@@ -11,19 +11,23 @@
  * @return {number[]}
  */
  var maxSlidingWindow = function(nums, k) {
-    let q = [], r = new Int16Array(nums.length - k + 1), i = -1
-    while (++i < k) q.push(max(nums, q, i))
-    r[0] = nums[q[0]], i--
-    while (++i < nums.length) {
-        q.push(max(nums, q, i))
-        if (q[0] === i - k) q.shift()
-        r[i - k + 1] = nums[q[0]]
-    }
-    return r
+     const q = [];
+     const ret = [];
+     for (let i = 0; i < nums.length; i++) {
+        while (q && nums[q[q.length - 1]] < nums[i]) {
+            q.pop();
+        }
+        q.push(i);
+        // remove first element if it's outside the window
+        if (q[0] === i - k) {
+            q.shift();
+        }
+        // if window has k elements add to results
+        if (i >= k - 1) {
+            ret.push(nums[q[0]]);
+        }
+     }
+     return ret;
 };
-const max = (nums, q, i) => {
-    while (nums[i] >= nums[q[q.length - 1]]) q.pop() // >=
-    return i
-}
 // @lc code=end
 
