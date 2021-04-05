@@ -10,34 +10,31 @@
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    let ret = new Array();
-    if (nums.length < 3) {
-        return ret;
-    }
-    nums.sort((a, b)=> a-b);
-    for (let first = 0; first < nums.length; first++) {
-        if ((first > 0) && nums[first] === nums[first - 1]) {
+    nums.sort((a, b) => a - b);
+    let ret = [];
+    for (let i = 0; i < nums.length; i++) {
+        if (i > 0 && nums[i - 1] === nums[i]) {
             continue;
         }
-        let third = nums.length - 1;
-        for (let second = first + 1; second < nums.length; second++) {
-            if ((second > first + 1) && nums[second] === nums[second - 1]) {
+        let k = nums.length - 1;
+        for (let j = i + 1; j < nums.length; j++) {
+            if (j > i + 1 && nums[j - 1] === nums[j]) {
                 continue;
             }
-            while ((second < third) && (nums[second] + nums[third] + nums[first] > 0)) {
-                third--;
+
+            while (j < k && nums[i] + nums[j] + nums[k] > 0) {
+                k--;
             }
-            if (second === third) {
+
+            if (j === k) {
                 break;
             }
-            if (nums[second] + nums[third] + nums[first] === 0) {
-                ret.push([nums[first], nums[second], nums[third]])
+
+            if (nums[i] + nums[j] + nums[k] === 0) {
+                ret.push([nums[i], nums[j], nums[k]]);
             }
         }
-
     }
     return ret;
 };
 // @lc code=end
-threeSum([-1,0,1,2,-1,-4,-2,-3,3,0,4])
-

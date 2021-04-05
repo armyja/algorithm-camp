@@ -10,7 +10,15 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-    return nums.sort((a, b)=> b === 0? -1: 0)
+    let pos = 0;
+    for (let i = 0; i< nums.length; i++) {
+        if (nums[i] !== 0) {
+            nums[pos++] = nums[i];
+        }
+    }
+    for (let i = pos; i < nums.length; i++) {
+        nums[i] = 0;
+    }
 };
 // @lc code=end
 

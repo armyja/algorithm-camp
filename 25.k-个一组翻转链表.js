@@ -20,9 +20,9 @@
 var reverseKGroup = function(head, k) {
     let dummyHead = new ListNode(0);
     dummyHead.next = head;
+    let tail = dummyHead;
     let prevEnd = dummyHead;
     while (head) {
-        let tail = prevEnd;
         for (let i = 0; i < k; i++) {
             tail = tail.next;
             if (tail === null) {
@@ -30,28 +30,27 @@ var reverseKGroup = function(head, k) {
             }
         }
         let nextStart = tail.next;
-
-        [head, tail] = myReverse(head, tail);
+        [head, tail] = reverse(head, tail);
         prevEnd.next = head;
         tail.next = nextStart;
-        head = tail.next;
+        head = nextStart;
         prevEnd = tail;
     }
     return dummyHead.next;
-    
-};
+}
 
-var myReverse = function(head, tail) {
+var reverse = function(head, tail) {
     let prev = tail.next;
     let curr = head;
     while (prev !== tail) {
-        const next = curr.next;
+        let next = curr.next;
         curr.next = prev;
         prev = curr;
         curr = next;
     }
     return [tail, head];
 }
+  
 
 // @lc code=end
 

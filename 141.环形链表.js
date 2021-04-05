@@ -18,19 +18,16 @@
  * @return {boolean}
  */
 var hasCycle = function(head) {
-    if (head === null || head.next === null) {
-        return false;
-    }
     let slow = head;
-    let fast = head.next;
-    while(slow !== fast) {
-        if (fast === null || fast.next === null) {
-            return false;
-        }
-        slow = slow.next;
+    let fast = head;
+    while (fast && fast.next && fast.next.next) {
         fast = fast.next.next;
+        slow = slow.next;
+        if (slow === fast) {
+            return true;
+        }
     }
-    return true;
+    return false;
 };
 // @lc code=end
 

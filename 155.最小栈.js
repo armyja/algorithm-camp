@@ -9,7 +9,7 @@
  * initialize your data structure here.
  */
 var MinStack = function() {
-    this._stack = []
+    this.stack = [];
     this.minValue = null;
 };
 
@@ -21,27 +21,28 @@ MinStack.prototype.push = function(val) {
     if (this.minValue === null) {
         this.minValue = val;
     }
-    if (this.minValue > val) {
-        this._stack.push(val - this.minValue);
+    if (val < this.minValue) {
+        this.stack.push(val - this.minValue);
         this.minValue = val;
     } else {
-        this._stack.push(val - this.minValue);
+        this.stack.push(val - this.minValue);
     }
+    
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    let top = this._stack.pop();
+    let val = this.stack.pop();
     let ret = null;
-    if (top < 0) {
+    if (val < 0) {
         ret = this.minValue;
-        this.minValue = this.minValue - top;
+        this.minValue -= val;
     } else {
-        ret = this.minValue + top;
+        ret = this.minValue + val;
     }
-    if (this._stack.length === 0) {
+    if (this.stack.length === 0) {
         this.minValue = null;
     }
     return ret;
@@ -51,12 +52,12 @@ MinStack.prototype.pop = function() {
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    let top = this._stack[this._stack.length - 1];
+    let val = this.stack[this.stack.length - 1];
     let ret = null;
-    if (top < 0) {
+    if (val < 0) {
         ret = this.minValue;
     } else {
-        ret = this.minValue + top;
+        ret = this.minValue + val;
     }
     return ret;
 };
