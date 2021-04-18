@@ -18,7 +18,27 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    
+    const res = [];
+    if (root === null) {
+        return res;
+    } 
+    let arr = [root];
+    while (arr.length > 0) {
+        let arrTemp = [];
+        let resItem = [];
+        for (let item of arr) {
+            resItem.push(item.val);
+            if (item.left) {
+                arrTemp.push(item.left);
+            }
+            if (item.right) {
+                arrTemp.push(item.right);
+            }
+        }
+        res.push(resItem);
+        arr = arrTemp;
+    }
+    return res;
 };
 // @lc code=end
 

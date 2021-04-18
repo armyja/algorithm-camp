@@ -30,8 +30,10 @@ var inorderTraversal = function (root) {
     inorder(root);
     return ret;
 };
+// @lc code=end
 
-var inorderTraversal_stack = function(root) {
+// Stack
+var inorderTraversal = function (root) {
     const res = [];
     const stack = [];
     let curr = root;
@@ -46,5 +48,4 @@ var inorderTraversal_stack = function(root) {
     }
     return res;
 };
-// @lc code=end
 

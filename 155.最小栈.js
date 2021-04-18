@@ -21,13 +21,10 @@ MinStack.prototype.push = function(val) {
     if (this.minValue === null) {
         this.minValue = val;
     }
+    this.stack.push(val - this.minValue);
     if (val < this.minValue) {
-        this.stack.push(val - this.minValue);
         this.minValue = val;
-    } else {
-        this.stack.push(val - this.minValue);
     }
-    
 };
 
 /**
@@ -42,6 +39,7 @@ MinStack.prototype.pop = function() {
     } else {
         ret = this.minValue + val;
     }
+    // easy to ignore this step
     if (this.stack.length === 0) {
         this.minValue = null;
     }

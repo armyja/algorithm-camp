@@ -16,6 +16,8 @@ var largestRectangleArea = function(heights) {
     for (let i = 0; i < arr.length; i++) {
         while (st.length && arr[st[st.length - 1]] > arr[i]) {
             let topIndex = st.pop();
+            // at this moment, the top item is the left lower edge of topIndex.
+            // width = i - 1 - st[st.length - 1]
             ret = Math.max(ret, arr[topIndex] * (i - 1 - st[st.length - 1]));
         }
         st.push(i);
