@@ -53,11 +53,12 @@ var combine = function (n, k) {
 var combine = function (n, k) {
     const res = [];
     const build = function (n, k, path) {
-        if (n < k || k === 0) {
-            if (k === 0) {
-                res.push(path);
-                return;
-            }
+        if (n < k) {
+            return;
+        }
+
+        if (k === 0) {
+            res.push(path);
             return;
         }
 

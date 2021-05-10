@@ -20,6 +20,7 @@
 var mergeTwoLists = function(l1, l2) {
     let mergedHead = new ListNode(0);
     let curr = mergedHead;
+    // Tips: 使用用 and
     while (l1 && l2) {
         if (l1.val < l2.val) {
             curr.next = l1;
@@ -28,6 +29,7 @@ var mergeTwoLists = function(l1, l2) {
             curr.next = l2;
             l2 = l2.next;
         }
+        // tips:  抽取逻辑
         curr = curr.next;
     }
     curr.next = l1 || l2;

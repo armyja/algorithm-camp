@@ -19,6 +19,7 @@ var rotate = function(nums, k) {
         do {
             curr = (curr + k) % nums.length;
             [nums[curr], prev] = [prev, nums[curr]];
+            // 计数完不必马上做判断，跳出循环外再做判断。
             count++;
         } while (curr !== start);
         start++;

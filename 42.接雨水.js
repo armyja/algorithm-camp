@@ -15,10 +15,13 @@ var trap = function(height) {
     for (let i = 0; i < height.length; i++) {
         while(stack.length && height[i] > height[stack[stack.length - 1]]) {
             let top = stack.pop();
+            // no left edge, break
             if (stack.length === 0) {
                 break;
             }
             const distance = i - 1 - stack[stack.length - 1];
+            // note that height[stack[stack.length - 1]] may equals to height top
+            // so area can be 0
             const area = (Math.min(height[i], height[stack[stack.length - 1]]) - height[top]) * distance;
             ret += area;
         }

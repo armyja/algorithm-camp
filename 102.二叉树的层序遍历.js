@@ -18,27 +18,27 @@
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    const res = [];
+    const levels = [];
     if (root === null) {
-        return res;
+        return levels;
     } 
-    let arr = [root];
-    while (arr.length > 0) {
-        let arrTemp = [];
-        let resItem = [];
-        for (let item of arr) {
-            resItem.push(item.val);
-            if (item.left) {
-                arrTemp.push(item.left);
+    let queue = [root];
+    while (queue.length > 0) {
+        let queueLength = queue.length;
+        let currLevel = [];
+        for (let i = 0; i < queueLength; i++) {
+            const curr = queue.shift();
+            currLevel.push(curr.val);
+            if (curr.left) {
+                queue.push(curr.left);
             }
-            if (item.right) {
-                arrTemp.push(item.right);
+            if (curr.right) {
+                queue.push(curr.right);
             }
         }
-        res.push(resItem);
-        arr = arrTemp;
+        levels.push(currLevel);
     }
-    return res;
+    return levels;
 };
 // @lc code=end
 

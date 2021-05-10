@@ -9,6 +9,7 @@
  * @param {string[]} strs
  * @return {string[][]}
  */
+// 第一反应：sort 后作为 key。实际：用 arr
 var groupAnagrams = function(strs) {
     const ret = {};
     for (let s of strs) {

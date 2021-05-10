@@ -10,6 +10,7 @@
  * @param {string} t
  * @return {boolean}
  */
+// 用 map 存，计数
 var isAnagram = function(s, t) {
     const map = {};
     s.split('').map(c => map[c] = map[c] ? map[c] + 1 : 1);
@@ -28,6 +29,7 @@ var isAnagram_me = function(s, t) {
         map[i] = map[i] ? map[i] + 1 : 1;
     }
     for (let i of t) {
+        // map[i] may be undefined or 0
         if (map[i]) {
             map[i]--;
         } else {
