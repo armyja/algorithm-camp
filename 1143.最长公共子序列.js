@@ -11,28 +11,24 @@
  * @return {number}
  */
  var longestCommonSubsequence = function(text1, text2) {
-    const memo = new Map();
-    return recursion(text1, text2, text1.length - 1, text2.length - 1, memo);
-};
-
-function recursion(text1, text2, index1, index2, memo) {
-    // base cases
-    if (index1 < 0 || index2 < 0) return 0;
-    
-    const key = index1 + '#' + index2;
-    
-    if (memo.has(key)) return memo.get(key);
-    
-    let result;
-
-    if (text1.charAt(index1) === text2.charAt(index2)) {
-        result = recursion(text1, text2, index1 - 1, index2 - 1, memo) + 1;
-    } else {
-        result = Math.max(recursion(text1, text2, index1, index2 - 1, memo), recursion(text1, text2, index1 - 1, index2, memo));
+    let m = text1.length;
+    let n = text2.length;
+    let dp = Array.from({length: m}, el => new Uint32Array(n));
+    for (let i = 0; i < m; i++) {
+        for (let j = 0; j < n; j++) {
+            if (text1[i] === text2[j]) {
+                dp[i][j] = getVal(i - 1, j - 1) + 1;
+            } else {
+                dp[i][j] = Math.max(getVal(i - 1, j), getVal(i, j - 1));
+            }
+        }
     }
-    
-    memo.set(key, result);
-    return result;
-}
+
+    function getVal(i, j) {
+        return (i < 0 || j < 0) ? 0 : dp[i][j];
+    }
+
+    return dp[m - 1][n -1];
+};
 // @lc code=end
 

@@ -9,8 +9,14 @@
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function (prices) {
-    
+ var maxProfit = function(prices) {
+    let min = Infinity;
+    let max = 0;
+    for (let i of prices) {
+        min = Math.min(i, min);
+        max = Math.max(max, i - min);
+    }
+    return max;
 };
 // @lc code=end
 

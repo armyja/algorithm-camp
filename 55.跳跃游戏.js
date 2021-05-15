@@ -10,26 +10,14 @@
  * @return {boolean}
  */
  var canJump = function(nums) {
-    let idx = 0;
-    let max = 0;
-    let target = nums.length - 1;
-  
-    while(idx < nums.length) {
-      max = Math.max(max, idx + nums[idx]);
-      
-      if (max >= target) {
-        return true;
+  let max = 0;
+  for(let i = 0; i < nums.length; i++){
+      if(i > max) {
+          return false;
       }
-      // max <= idx
-      if (max <= idx && nums[idx] === 0) {
-        return
-         false;
-      }
-      
-      idx++;
-    }
-    
-    return false;
-  };
+      max = Math.max(max, i + nums[i]);
+  }
+  return true;
+};
 // @lc code=end
 
