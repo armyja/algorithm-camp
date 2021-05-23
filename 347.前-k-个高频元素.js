@@ -20,11 +20,13 @@ let topKFrequent = function (nums, k) {
     }
 
     for (let [num, freq] of freqMap) {
+        //  桶排序，数组元素是数组
         bucket[freq] = (bucket[freq] || new Set()).add(num);
     }
 
     for (let i = bucket.length - 1; i >= 0; i--) {
         if (bucket[i]) {
+            // 展开数组
             result.push(...bucket[i]);
         }
         if (result.length === k) {
@@ -35,4 +37,3 @@ let topKFrequent = function (nums, k) {
 };
 
 // @lc code=end
-

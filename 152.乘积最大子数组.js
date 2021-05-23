@@ -9,6 +9,9 @@
  * @param {number[]} nums
  * @return {number}
  */
+/**
+ * 思路：记录截止到 i 为止，最小的数和最大的数。当前数乘以其中的一个数就是最大的数。
+ */
 var maxProduct = function (nums) {
     let prevMin = nums[0];
     let prevMax = nums[0];

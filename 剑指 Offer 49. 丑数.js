@@ -1,25 +1,23 @@
 var nthUglyNumber = function(n) {
-    const dp = new Array(n + 1).fill(0);
-    dp[1] = 1;
-    let p2 = 1;
-    let p3 = 1;
-    let p5 = 1;
+    let arr = [1];
+    let p2 = 0;
+    let p3 = 0;
+    let p5 = 0;
     for (let i = 2; i <= n; i++) {
-        const two = 2 * dp[p2];
-        const three = 3 * dp[p3];
-        const five = 5 * dp[p5];
-        dp[i] = Math.min(Math.min(two, three), five);
-        if (dp[i] === two) {
+        const v2 = arr[p2] * 2;
+        const v3 = arr[p3] * 3;
+        const v5 = arr[p5] * 5;
+        const max = Math.min(v2, v3, v5);
+        if (v2 === max) {
             p2++;
         }
-        if (dp[i] === three) {
+        if (v3 === max) {
             p3++;
         }
-        if (dp[i] === five) {
+        if (v5 === max) {
             p5++;
         }
+        arr.push(max);
     }
-    return dp[n];
+    return arr[n - 1];
 };
-
-nthUglyNumber(10);

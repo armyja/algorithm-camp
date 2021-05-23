@@ -17,23 +17,25 @@
  * @param {Node} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
+ var levelOrder = function(root) {
     if (root === null) {
         return [];
     }
-    const ret = [];
-    let stack = [root];
-    while (stack.length) {
-        ret.push(stack.map(i => i.val));
-        let arr = [];
-        for (let i of stack) {
-            if (i.children.length) {
-                arr = arr.concat(i.children);
+    const res = [];
+    let arr = [root];
+    while (arr.length) {
+        let tmpArr = [];
+        let tmpRes = [];
+        for (let node of arr) {
+            tmpRes.push(node.val);
+            if (node.children) {
+                tmpArr = tmpArr.concat(node.children);
             }
         }
-        stack = arr;
+        arr = tmpArr;
+        res.push(tmpRes);
     }
-    return ret;  
+    return res;
 };
 // @lc code=end
 
