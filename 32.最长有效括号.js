@@ -10,6 +10,7 @@
  * @return {number}
  */
 var longestValidParentheses = function(s) {
+    // 栈底存的是无效的数据
     let stack = [-1], ans = 0
     for (let i = 0; i < s.length; i++)
         if (s[i] === '(') stack.push(i)

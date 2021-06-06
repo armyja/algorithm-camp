@@ -26,3 +26,21 @@
 };
 // @lc code=end
 
+var isIsomorphic = function(s, t) {
+    let len = s.length;
+    const map = {};
+    for (let i = 0; i < len; i++) {
+        const val1 = s[i];
+        const val2 = t[i];
+        if (map[val1] === undefined) {
+            map[val1] = val2;
+            continue;
+        }
+        if (map[val1] !== val2) {
+            return false;
+        }
+    }
+    return true;
+};
+
+isIsomorphic("badc", "baba");
