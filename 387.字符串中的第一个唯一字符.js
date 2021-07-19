@@ -9,7 +9,7 @@
  * @param {string} s
  * @return {number}
  */
- var firstUniqChar = function(s) {
+var firstUniqChar = function (s) {
     let len = s.length;
     const arr = Array(26).fill(0);
     for (let i = 0; i < len; i++) {
