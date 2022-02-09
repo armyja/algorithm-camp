@@ -1,1 +1,6 @@
 doc
+/src
+/target
+.vscode
+Cargo.lock
+Cargo.toml
