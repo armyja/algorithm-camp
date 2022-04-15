@@ -11,7 +11,11 @@
  * @return {number}
  */
 var countOdds = function(low, high) {
-
+    let c = high - low + 1;
+    if (c % 2 === 0) {
+        return c / 2;
+    }
+    return (c + ((low % 2 === 1) ? 1 : -1) ) / 2;
 };
 // @lc code=end
 
