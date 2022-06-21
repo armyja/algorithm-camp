@@ -53,3 +53,23 @@ var maxDepth = function(root) {
     }
     return level;
 };
+/*
+var maxDepth = function(root) {
+    let res = 0
+    if (root == null) {
+        return res;
+    }
+    let stack = [[root, 1]];
+    while (stack.length > 0) {
+        let [node, depth] = stack.pop();
+        res = Math.max(res, depth);
+        if (node.left) {
+            stack.push([node.left, depth + 1])
+        }
+        if (node.right) {
+            stack.push([node.right, depth + 1])
+        }
+    }
+    return res;
+};
+*/
